@@ -105,6 +105,8 @@ JavaScript是基于对象的编程语言，主要支持以下4种对象：
 | Folder对象 | 静态对象 | 用于获取服务器端指定文件夹的相关属性 |
 
 
+| Array对象 | 动态对象 | 使用Array对象定义数组操作 |
+
 ### 5.2 对象访问语句  
 5.2.1 for···in
 ```javascript
@@ -133,6 +135,195 @@ with(date_time){
 }
 ```
 ### 5.3 JavaScript中的数组
+JavaScript中的数组元素允许属于不同的数据类型。
+5.3.2创建访问数组
+```javascript
+myArray = new Array();
+myArray = new Array([size])
+myArray = new Array([element0[,element1[,...[,elementN]]]]);
 
+```
 
+5.3.3
+不需要知道数组个数的情况下输出数组元素 for···in
+```javascript
+for(key in myArray)
+```
+5.3.4 Array对象的常用属于和方法
+1.常用属于
+(1). length
+```javascript
+my_array.length
+```
+(2). prototype
+所有Javascript对象所共有的属性，定义新的属性和方法添加到Array对象中
+```javascript
+Array.prototype.methodName = functionName
+```
+1.常用方法
+连接方法concat、分隔方法join、追加方法push、倒转方法reverse、切片方法slice等
+(1). concat
+```javascript
+var array3 = array1.concat(array2)
+```
+(2). join
+```javascript
+var arrayString = array.join(separator)
+```
+(3). push
+```javascript
+array.push([data1[,data2[,...[datan]]]])
+```
+(4). reverse
+数组元素反序排列
+```javascript
+array.reverse()
+```
+(5). slice  切片(部分)
+该方法将提取数组中的一个片段或子字符串，并将其作为新数组返回，而不修改原始数组。返回的数组包括start元素到end元素(但不包括该元素)的所有元素
+```javascript
+my_array.slice([start[,end]])
+```
+(6). sort
+按Unicode编码进行排序,默认按升序排列，也可以指定对比函数进行排序，对比函数格式
+comparefunction(arg1,arg2)。
+返回为负,arg2排在arg1的后面；返回为0，视为相等；返回为正，arg2排在arg1的前面。
+```javascript
+sort([cmpfun(arg1,arg2)])
+```
+(7). splice  
+指定索引和数据个数，删除或替换数组中的部分数据，该方法的返回值为被删除或替换掉的数据。
+```javascript
+array.splice([start,count[,data1[data2,[,...[,datan]]]])
+```
+没有指定data参数则指定的数据被删除，指定了则被替换。
 
+### 5.4 详解常用的数组对象方法
+5.4.1 连接其它数组到当前数组
+arrayObject.concat(array1,array2,.....,arrayN)
+5.4.2 将数组元素连接为字符串
+arrayObject.join(separator)
+5.4.3 移除数组中最后一个元素
+arrayObject.pop()
+如果数组为空，pop不改变数组，并返回undefined值，否则返回移除的元素的值。
+5.4.4 将指定的数值添加到数组中
+arrayObject.push(newelement1,newelement2,....,newelementN)
+5.4.5 反序排列数组中的元素
+arrayObject.reverse()
+不会创建新数组，会改变原来的数组。
+5.4.6 删除数组中第一个元素
+arrayObject.shift()
+删除数组中第一个元素,并返回第一个元素的值。不会创建新数组，直接修改原来的数组。
+5.4.7 获取数组中的一部分数据
+arrayObject.slice(start,end)
+5.4.8 对数组中的元素进行排序
+arrayObject.sort(sortby)
+5.4.9 将数组转成字符串
+arrayObject.toString()
+元素之间用逗号分隔。
+5.4.10 将数组转换成本地字符串
+arrayObject.toLocaleString()
+5.4.11 在数组开头插入数据，并返回该数组
+arrayObject.unshift(newelement1,newelement2,....,newelementN)
+
+### 5.5 创建和使用自定义对象
+Java作为基于对象的编程语言，其对象实例通过构造函数来创建。   
+每一个构造函数包括一个对象原型，定义了每个对象包含的属性和方法。  
+两种方法创建自定义对象：  
+1.通过定义对象的构造函数的方法  
+2.通过对象直接初始化的方法  
+#### 5.5.1 通过定义对象的构造函数的方法 
+通过定义对象的构造函数,然后使用new操作符来生成该对象的实例  
+```
+source/5.26.html
+```
+也可以写成内部函数
+```javascript
+function Student(iName,iAddress,iGrade,iScore)
+{
+   this.name=iName;
+   this.address=iAddress;
+   this.grade=iGrade;
+   this.Score=iScore;
+   this.information=function()
+   {
+        var msg="";
+        msg="学生信息：\n"
+        msg+="\n学生姓名 : "+this.name+" \n";
+        msg+="家庭地址 : "+this.address +"\n";
+        msg+="班级 : "+this.grade +" \n";
+        msg+="分数 : "+this.Score
+        window.alert(msg);
+   };
+}
+```
+#### 5.5.2 通过对象直接初始化的方法
+该方法无须生成此对象的实例  
+```javascript
+//直接初始化对象
+var ZJDX = {name:"test1", address:"test2",grade:"401",score:"99",infomation:showInfomation};
+function showInfomation()
+   {
+        var msg="";
+        msg="学生信息：\n"
+        msg+="\n学生姓名 : "+this.name+" \n";
+        msg+="家庭地址 : "+this.address +"\n";
+        msg+="班级 : "+this.grade +" \n";
+        msg+="分数 : "+this.Score
+        window.alert(msg);
+   };
+```
+这种代码紧凑，编程效率高，但要生成若干个对象的实例，就必须为每个实例重复相同的代码结构，而只是参数不同而已，代码的重用性比较差。  
+
+#### 5.5.3 修改和删除对象实例的属性
+```javascript
+//直接初始化对象
+var ZJDX = {name:"test1", address:"test2",grade:"401",score:"99",infomation:showInfomation};
+function showInfomation()
+   {
+        var msg="";
+        msg="学生信息：\n"
+        msg+="\n学生姓名 : "+this.name+" \n";
+        msg+="家庭地址 : "+this.address +"\n";
+        msg+="班级 : "+this.grade +" \n";
+        msg+="分数 : "+this.Score+" \n";
+        //修改score属性
+        this.Score = 88;
+        //删除对象实例的address属性
+        delete this.address;
+        window.alert(msg);
+   };
+```
+
+#### 5.5.4 通过原型为对象添加新属性和新方法
+JavaScript中对象的prototype属性，是用来返回对象类型原型引用的。使用prototype属性提供对象类的一组基本功能，并且对象的新实例会“继承”赋予该对象原型的操作。所有JavaScript内部对象都有只读的prototype属性。可以向其原型中动态添加功能（属性和方法），但该对象不能被赋予不同的原型。然而，用户定义的对象可以被赋予新的原型。   
+给已经存在的对象添加新属性和新方法。  
+```
+source/5.27.html
+```
+原型里添加了方法，为什么每一个对象实例有这个方法，第二个对象实例没有这个方法，所有对象的prototype不都指向同一个原型吗？  
+
+#### 5.5.5 自定义对象的嵌套
+```
+source/5.28.html
+```
+```javascript
+var StudentData={
+    age:"26",
+    Tel:"181000000",
+    teacher:"张老师"
+}
+var ZJDX = {
+    name:"test1", 
+    address:"test2",
+    grade:"401",
+    score:"99",
+    //嵌套对象StudentData
+    data:StudentData,
+    infomation:showInfomation
+};
+
+```
+#### 5.5.6 内存的分配和释放
+JavaScript是基于对象的编程语言，而不是面向对象的编程语言，因此缺少指针的概念。面向对象的编程语言在动态分配和释放内存方面起着非常重要的作用，那么JavaScript中的内存如何管理呢？在创建对象的同时，浏览器自动为创建的对象分配内存空间，JavaScript将新对象的引用传递给调用的构造函数；而在对象清除时其占据的内存将被自动回收，其实整个过程都是浏览器的功能，JavaScript只是创建该对象。
+浏览器中的这种内存管理机制称为“内存回收”，它动态分析程序中的每个占据内存空间的数据（变量、对象等）。如果该数据对于程序标记为不可再用时，浏览器调用内部函数将其占据的内存空间释放，实现内存的动态管理。在自定义的对象使用过后，可以通过给其赋空值的方法来标记对象占据的空间是否可以释放，如“ZJDX=null;”。浏览器将根据此标记动态释放其占据的内存，否则将保存该对象直至当前程序再次使用它为止。  

@@ -1,0 +1,52 @@
+<! DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>自定义对象嵌套</title>
+<script language="JavaScript" type="text/javascript">
+<!--
+//对象的构造函数
+//构造嵌套的对象
+var StudentData={
+                age:"26",
+                Tel:"1810000000",
+                teacher:"张老师"
+               };
+//构造被嵌入的对象
+var ZJDX={
+            name:"刘明明",
+            address:"新疆乌鲁木齐100号",
+            grade:"401",
+            score:"86",
+            //嵌套对象StudentData
+            data:StudentData,  
+            information:showInformation
+           };
+//定义对象的方法
+function showInformation()
+{
+  var msg="";
+  msg="对象嵌套实例：\n\n";
+  msg+="被嵌套对象直接属性值:\n"
+  msg+="学生姓名: "+this.name+"\n";
+  msg+="家庭地址: "+this.address +"\n";
+  msg+="年级: "+this.grade +"\n";
+  msg+="分数: "+this.number +"\n\n";
+  msg+="访问嵌套对象直接属性值:\n"
+  msg+="年龄: "+this.data.age +"\n";
+  msg+="联系电话: "+this.data.Tel +" \n";
+  msg+="班主任: "+this.data.teacher +" \n";
+  window.alert(msg);
+}
+-->
+</script>
+</head>
+<body>
+<br>
+<center>
+<form>
+  <input type="button" value="查看" onclick="ZJDX.information()">
+</form>
+</center>
+</body>
+</html>
