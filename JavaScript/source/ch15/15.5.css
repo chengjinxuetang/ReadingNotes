@@ -1,0 +1,18 @@
+company{
+  color: #ddeecc;
+  font:normal small-caps bolder 15pt "свт╡" ;
+               background-color:#123543        
+}
+name{
+   font-size:30px; 
+   display:block;
+}
+address{
+              font-size: 12px;
+  display:block;
+}
+phone{
+            font-size: 12px;
+            font-style:italic;
+            display:block;
+}

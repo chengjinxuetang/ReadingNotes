@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>文档中的表单</title>
+<script language="JavaScript" type="text/javaScript">
+<!--
+function getWin()
+{
+  window.alert("窗体的长度："+document.forms.lenght);
+  window.alert("窗体中隐藏域的值："+document.frmData.hidField.value);
+  window.alert("使用名称数组得到的隐藏域的值："+document.forms["frmData"].hidField.value);
+}
+//-->
+</script>
+</head>
+<body>
+  <form name="frmData" method="post" action="#">
+     <input type="hidden" name="hidField" value="123">
+     <input type="button" value="得到窗体" onclick="getWin()">
+  </form>
+</body>
+</html>

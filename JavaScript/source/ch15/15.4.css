@@ -1,0 +1,14 @@
+student{
+background-color: #ddeecc;
+font-family:"свт╡";
+text-align:center;
+display:block;
+}
+name{
+font-size:20px;
+color:red;
+}
+sex{
+font-size:12px;
+font-style:italic;
+}

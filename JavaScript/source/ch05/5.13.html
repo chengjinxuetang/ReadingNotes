@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<Script language="JavaScript"> 
+   var arr=new Array(1,6,3,40,1,"a","b","A","B");
+   writeArr("排序前",arr);
+   writeArr("升序排列",arr.sort());
+   writeArr("降序排列,字母不分大小写",arr.sort(desc));
+   writeArr("严格降序排列",arr.sort(desc1));
+   //自定义函数输出提示信息和数组元素
+   function writeArr(str,array)
+   {
+      document.write(str+":");
+      document.write(array.join(","));
+      document.write("<br>");
+   }
+   //按降序排列,字母不区分大小写
+   function desc(a,b)
+   {
+      var a=new String(a);
+      var b=new String(b);
+      //如果a大于b，则返回-1，所以a排在前b排在后
+      return -1*a.localeCompare(b) ;
+   }
+   //严格降序
+   function desc1(a,b)
+   {
+         var stra=new String(a);
+         var strb=new String(b);
+         var ai=stra.charCodeAt(0);
+         var bi=strb.charCodeAt(0);
+         if( ai>bi )
+           return -1;
+         else
+           return 1;
+   }
+</script>                      
+</head>
+<body>
+</body>
+</html>

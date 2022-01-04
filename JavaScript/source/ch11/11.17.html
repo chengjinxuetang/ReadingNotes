@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="UTF-8"/>
+<title>验证表单数据的合法性</title>
+<script language="JavaScript">
+<!--
+function validate()
+{
+  var _txtNameObj = document.all.txtName;        //获取文本框对象
+  var _txtNameValue = _txtNameObj.value;           //文本框对象的值
+  if((_txtNameValue == null) || (_txtNameValue.length < 1))
+  { //判断文本框的值是否为空
+    window.alert("输入的内容不能是空字符！");
+	_txtNameObj.focus(); //文本框获得焦点
+	return;
+  }
+  if(_txtNameValue.length > 20)
+  { //判断文本框的值，长度是否大于20
+    window.alert("输入的内容过长，不能超过20！");
+	_txtNameObj.focus();
+	return;
+  }
+  if(isNaN(_txtNameValue))
+  { //判断文本框的值，是否全是数字
+    window.alert("输入的内容必须由数字组成！");
+	_txtNameObj.focus();
+	return;
+  }
+}
+//-->
+</script>
+</head>
+<body>
+<form method=post action="#">
+<input type="text" name="txtName">                    
+<input type="button" value="确定" onclick="validate()">
+</form>
+</body>
+</html>

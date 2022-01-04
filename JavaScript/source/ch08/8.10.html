@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>通过使用鼠标变换图片</title>
+<script language="JavaScript" type="text/javascript">
+<!--
+function MyImageA()
+{
+   document.all.MyPic.src="tu1.jpg";
+}
+function MyImageB()
+{
+   document.all.MyPic.src="tu2.jpg";
+}
+-->
+</script>
+</head>
+<body>
+<center>
+<p>在图片内外移动鼠标，图片轮换</p>
+<img name="MyPic" id="MyPic" src="tu1.jpg" width=300 height=200></img>
+<script language="JavaScript" type="text/javascript">
+<!--
+document.all.MyPic.onmouseover=MyImageA;
+document.all.MyPic.onmouseout=MyImageB;
+-->
+</script>
+</center>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>在同一网页中使用多个框架</title>
+</head>
+var parentObj=window.parent;//获取当前窗口的父窗口（框架）
+window.alert("父对象中第一个框架的框架名："+parentObj.frames[0].name);
+window.alert("父对象中名称为“topFrame”的框架名："+parentObj.frames["topFrame"].name);
+
+  <frameset rows="60,*" cols="*" frameborder="0" border="0" framespacing="0">
+  <frame src="top.html" name="topFrame" scrolling="no" id="top" 
+  	marginheight="0" marginwidth="0" noresize/>
+  <frameset cols="200,*" frameborder="1" framespacing="2" 
+  		marginwidth="0" marginheight="0" leftmargin="0" topmargin="0">
+    <frame src="left.html" name="leftFrame" target="mainFrame" 
+    		scrolling="auto" borderColor="#FBFBFB" id="left">
+    <frame src="right.html" name="mainFrame" scrolling="auto" id="main">
+  </frameset>
+</frameset>
+</html>

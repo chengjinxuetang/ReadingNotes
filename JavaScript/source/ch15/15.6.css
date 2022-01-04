@@ -1,0 +1,11 @@
+img{
+  display:block;
+  color:red;
+  text-align:center;
+  font-size:40px;
+  left:50px;
+  top:170px;
+  background-image:URL("08.jpg");
+  background-repeat:no-repeat;
+  background-position:left;
+}

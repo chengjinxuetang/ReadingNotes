@@ -1,0 +1,24 @@
+<! DOCTYPE HTML >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Sample Page!</title>
+</head>
+<body>
+<center>
+<br>
+<p>通过匿名函数处理事件</p>
+<form name=MyForm id=MyForm>
+    <input type=button name=MyButton id=MyButton value="测试">
+</form>
+<script language="JavaScript" type="text/javascript">
+<!--
+document.MyForm.MyButton.onclick=new Function()
+{
+   alert("已经单击该按钮!");
+}
+-->
+</script>
+</center>
+</body>
+</html>

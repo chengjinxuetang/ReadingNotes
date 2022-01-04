@@ -1,0 +1,35 @@
+big{
+  width:500px;
+  border:#6600FF 1px solid;
+  height:200px;
+  font-size:12px;
+  font-family:"свт╡";
+             
+  }
+one{
+  font-size:18px;
+  width:500px;
+  height:25px;
+  line-height:25px;
+  text-align:center;
+  color:#FF3300;
+  margin-top:5px;
+  font-weight:800;
+              text-decoration:underline;
+  }
+title{
+  margin:10px 0 10px 10px;
+  display:block;
+  color:#0033FF;
+  font-size:14px;
+  font-weight:800; 
+text-align:center;
+  }
+content{
+  display:block;
+  line-height:20px;
+  width:490px;
+  margin-left:10px;
+  font-weight:800;
+               text-indent:2em;               
+  }

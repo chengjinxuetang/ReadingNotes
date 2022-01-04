@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta http-equiv=content-type content="text/html; charset=gb2312">
+<title>学生注册信息</title>
+<script language="JavaScript" type="text/javascript">
+<!--
+var msg="\n学生信息 :\n\n";
+//获取学籍注册信息
+function AlertInfo()
+{
+  var nameTemp;
+  var sexTemp;
+  var classTemp;
+  var numTemp;
+  //获取"姓名"字段信息
+  nameTemp=document.getElementById("MyName").value;
+  //获取"性别"单选框的选中状态
+  var sexRadio=document.all.MyForm.MySex;
+  for(i=0;i<sexRadio.length;i++)   
+  {   
+    if(sexRadio[i].checked)   
+      sexTemp=sexRadio[i].value;  
+  }
+  //获取"年级"单选框的选中状态
+  var classRadio=document.all.MyForm.MyClass;
+  for(i=0;i<classRadio.length;i++)   
+  {   
+    if(classRadio[i].checked)   
+      classTemp=classRadio[i].value;  
+  }
+  //获取"学号"字段信息
+  numTemp=document.getElementById("MyNum").value;
+  //输出相关信息
+  msg+="学生信息 : \n";
+  msg+="        姓名 : "+nameTemp+"\n";
+  msg+="        性别 : "+sexTemp+"\n";
+  msg+="        年级 : "+classTemp+"\n";
+  msg+="        学号 : "+numTemp+"            \n\n";
+  msg+="提示信息 : \n";
+  msg+="确定输入的信息无误后,单击[确定]按钮提交!\n";  
+  alert(msg);
+  return true;
+}
+//-->
+</script>
+</head>
+<body>
+<center>  
+<p>学生基本信息</p>
+<form name="MyForm" method="POST" action="1.asp" onsubmit="return AlertInfo()">  
+ 姓名: <input type="text" name="MyName" id="MyName" value="张小米"><br>
+性别: <input type="radio" name="MySex" id="MySex" value="男" >男  
+<input type="radio" name="MySex" id="MySex" value="女" checked >女<br>
+年级: <input type="radio" name="MyClass" id="MyClass" value="大一经管系" >大一
+<input type="radio" name="MyClass" id="MyClass" value="大二经管系" checked >大二
+<input type="radio" name="MyClass" id="MyClass" value="大三经管系">大三<br>
+学号: <input type="text" name="MyNum" id="MyNum" value=" 040811001"><br>
+  <p>
+    <input type="submit" value="提交">
+    <input type="reset" value="重填">
+  </p>
+</form>
+</center>  
+</body>
+</html>

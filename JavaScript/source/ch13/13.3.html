@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>跑马灯</title>
+<style type="text/css">
+<!--
+body{
+	background-color:#FFFFFF;	/* 页面背景色 */
+}
+input{
+	background:transparent;		/* 输入框背景透明 */
+	border:none;				/* 无边框 */
+	color:#ffb400;
+	font-size:45px;
+	font-weight:bold;
+	font-family:黑体;
+}
+-->
+</style>
+<script language="javascript">
+var msg="品味中原文化，寄情黄河风景";		//移动文字
+var interval = 400;						//移动速度
+var seq=0;
+
+function LenScroll() {
+	document.nextForm.lenText.value = msg.substring(seq, msg.length) + "   " + msg;
+	seq++;
+	if ( seq > msg.length )
+		seq = 0;
+	window.setTimeout("LenScroll();", interval);
+}
+</script>
+   </head>
+<body onLoad="LenScroll()">
+<center>
+<form name="nextForm">
+<input type=text name="lenText">
+</form>
+</center> 
+</body>

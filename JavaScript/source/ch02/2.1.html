@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>date对象</title>
+<script type="text/javascript">
+function disptime( )
+{
+  //创建日期对象now，并实现当前日期的输出
+  var now= new Date( );
+  //document.write(“<h1>河南旅游网</h1>”);
+  document.write("<H2>今天日期:"+now.getFullYear()+"年"+(now.getMonth( )+1)+"月"+now.getDate()+"日</H2>");   //在页面上显示当前年月日
+}
+</script>
+<body onload="disptime( )">
+</body>
+</html>

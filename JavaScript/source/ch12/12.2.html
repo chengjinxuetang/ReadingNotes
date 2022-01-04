@@ -1,0 +1,24 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="12.2.css" />
+<script>
+function fnInit(){
+// 访问 styleSheet 中的一条规则, 将其 backgroundColor 改为蓝色。
+var oStyleSheet=document.styleSheets[0];
+var oRule=oStyleSheet.rules[0];
+oRule.style.backgroundColor="#0000FF";
+oRule.style.width="200px";
+oRule.style.height="120px";
+}
+
+</script>
+<title>动态样式</title>
+</head>
+<body>
+</HEAD>
+<div class="class1">
+我会改变颜色
+</div>
+<a href=# onclick="fnInit()">改变背景色</a>
+<body>
+</html>

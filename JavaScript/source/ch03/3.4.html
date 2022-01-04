@@ -1,0 +1,22 @@
+<!DOCTYPE>
+<html>
+<body>
+<script type="text/javascript">
+var x=20;y=x;              //x、y值都为20
+if(x<1)                     //x为20,不满足此条件，故其下面的代码不会执行
+{
+if(y==5)
+alert("x<1&&y==5");
+else
+alert("x<1&&y!==5");
+}
+else if(x>15)                //x满足条件，继续执行下面的语句
+{
+if(y==5)                   //y为20,不满足此条件，故其下面的代码不会执行
+alert("x>15&&y==5"); 
+else                       //y满足条件，继续执行下面的语句
+alert("x>15&&y!==5");        //这里是程序输出的结果
+}
+</script>
+</body>
+</html>

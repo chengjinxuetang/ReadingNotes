@@ -1,0 +1,63 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+<meta http-equiv=content-type content="text/html; charset=gb2312">
+<title>添加同父节点</title>
+</head>
+<body>
+<p id="p1">go to<B> DOM </B>World! </p>
+<script language="JavaScript" type="text/javascript">
+<!--
+function nodeStatus(node)
+{
+      var temp="";
+   if(node.nodeName!=null)
+  {
+      temp+="nodeName: "+node.nodeName+"\n";
+  }
+  else temp+="nodeName: null!\n";
+    if(node.nodeType!=null)
+  {
+      temp+="nodeType: "+node.nodeType+"\n";
+    }
+    else temp+="nodeType: null\n";
+    if(node.nodeValue!=null)
+  {
+      temp+="nodeValue: "+node.nodeValue+"\n\n";
+    }
+    else temp+="nodeValue: null\n\n";
+    return temp;
+}
+//输出节点树相关信息
+//返回id属性值为p1的元素节点
+var parentElement=document.getElementById('p1');
+var msg="insertBefore方法之前:\n"
+msg+=nodeStatus(parentElement);
+//返回p1的第一个孩子，即文本节点“Welcome to”
+var targetElement=parentElement.firstChild;
+msg+=nodeStatus(targetElement);
+//返回文本节点“Welcome to”下一个同父节点，即元素节点B
+var currentElement=targetElement.nextSibling;
+msg+=nodeStatus(currentElement);
+//返回元素节点P的最后一个孩子，即文本节点“World!”
+currentElement=parentElement.lastChild;
+msg+=nodeStatus(currentElement);
+//生成新文本节点“Please”，并插入到文本节点“go to”之前
+var newTextNode= document.createTextNode("Please");
+parentElement.insertBefore(newTextNode,targetElement);       
+msg+="insertBefore方法之后:\n"+nodeStatus(parentElement);
+//返回p1的第一个孩子，即文本节点“Please”
+targetElement=parentElement.firstChild;
+msg+=nodeStatus(targetElement);
+//返回文本节点“go to”下一个同父节点，即元素节点“go to”
+var currentElement=targetElement.nextSibling;
+msg+=nodeStatus(currentElement);
+//返回元素节点P，即文本节点“World!”
+currentElement=parentElement.lastChild;
+msg+=nodeStatus(currentElement);
+//输出节点属性
+alert(msg);
+//-->
+</script>
+</body>
+</html>        

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>打开新窗口</title>
+<script language="JavaScript" type="text/javaScript">
+<!--
+function openWin()
+{
+	var _url = "9.6.html"; //指定URL
+	var _name = "_blank"; //指定打开窗口的名称
+	var _feature = ""; //打开窗口的效果
+	var _left = (window.screen.width - 400) / 2; //计算新窗口居中时距屏幕左边的距离
+	var _top = (window.screen.Height - 300) / 2; //计算新窗口居中时距屏幕上方的距离
+	_feature += "left=" + _left + ","; //新窗口距离屏幕上方的距离
+	_feature += "top=" + _top + ","; //新窗口距离屏幕左边的距离
+	_feature += "width=500,"; //新窗口的宽度
+	_feature += "height=400,"; //新窗口的高度
+	_feature += "resizable=0,"; //大小不可更改
+	_feature += "scrollbars=1,"; //滚动条显示
+	_feature += "menubar=0,toolbar=0,status=0,location=0,directories=0"; //其他显示效果
+	var win = window.open(_url, _name, _feature);
+}
+//-->
+</script>
+</head>
+<body>
+  <form name="frmData" method="post" action="#">
+  	<table width="600" align="center" border="1" cellspacing="0">
+  		<thead>
+  			<th colspan="3">网上购物</th>
+  		</thead>
+  		<tr>
+  			<td valign="top" width="200">
+  				<ul>
+  				<li><a href="#" onmouseover="return showMsg('主页')">主页</a></li>
+  				<li><a href="#" onmouseover="return showMsg('简介')">简介</a></li>
+ 		<li><a href="#" onmouseover="return showMsg('联系方式')">联系方式</a></li>
+  		<li><a href="#" onmouseover="return showMsg('业务介绍')">业务介绍</a></li>
+  				</ul>
+  			</td>
+  			<td valign="top" width="300">
+  				上网购物是新的一种消费理念
+  			</td>
+  		</tr>
+<tr align="center">
+  			<td colspan="3" align="center">
+  				<input type="button" value="打开新窗口" onclick="openWin()">
+  			</td>
+  		</tr>
+  	</table>
+  </form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>文档中的锚点</title>
+<script language="JavaScript" type="text/javaScript">
+<!--
+function getAnchors()
+{
+	var anchorAry = document.anchors; //得到锚点数组
+	window.alert("锚点数组大小：" + anchorAry.length);
+	for(var i=0; i<anchorAry.length; i++)
+	{
+		window.alert("第" + (i + 1) + "个锚点是：" + anchorAry[i].name);
+	}
+}
+//-->
+</script>
+</head>
+<body>
+  <form name="frmData" method="post" action="#">
+  	<center>
+  	<ul>
+  		<li><a href="#linkName" name="whatLink">电子商务</a></li>
+  		<li><a href="#" name="colorLink">时尚服饰</a></li>
+  	</ul>
+   </center>
+  <br>
+  <p><input type="button" value="锚点数组" onclick="getAnchors()"></p>
+  <br>
+  <p></p>
+  <p>
+  	<a name="linkName">电子商务</a>
+  	<br>                                      
+  	电子商务通常是指是在全球各地广泛的商业贸易活动中，在因特网开放的网络环境下，基于浏览器/服务器应用方式，而买卖双方不用见面地进行各种商贸活动。
+  </p>
+  <a href="#whatLink">返回</a>
+  </form>
+</body>
+</html>

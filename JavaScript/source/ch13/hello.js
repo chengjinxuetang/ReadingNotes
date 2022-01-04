@@ -1,0 +1,1 @@
+alert("»¶Ó­´ó¼ÒÑ§Ï°JavaScript");
