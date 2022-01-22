@@ -368,4 +368,83 @@ var myDate4=new Date(2011,10,19,16,16,16);
 实例： 6.2.html  
 
 ### 6.2 详解日期对象的常用方法
+#### 6.2.1 返回当前日期和时间
+```javascript
+document.write(Date())
+```
+#### 6.2.2 以不同的格式显示当前日期
+ch06\6.4.html  
+
+#### 6.2.3 返回日期所对应的周次
+dateObject.getDay()  
+返回值是0(周日)-6(周六)之间的一个整数  
+ch06\6.5.html  
+
+#### 6.2.4 显示当前时间
+getHours()、getMinutes()、getSeconds()返回的值是一个两位的数字。不过返回值不总是两位的，如果该值小于10，则仅返回一位数字。  
+ch06\6.6.html  
+
+#### 6.2.5 返回距1970年1月1日午夜的时间差
+getTime()返回Date对象距离1970年1月1日午夜(GMT时间)之间的毫秒数。  
+ch06\6.7.html  
+
+#### 6.2.6 以不同的格式来显示UTC日期
+getUTCDate() 返回一个月(UTC)中的某一天(1~31中的一个值)             ***1为一个月的第1天  
+getUTCMonth() 返回一个月份的数字0(一月)~11(十二月)之间的一个整数。  ***0为1月  
+getUTCFullYear() 返回年份的4位数字，不是两位数的缩写。  
+ch06\6.8.html  
+
+#### 6.2.7 根据世界时返回日期对应的周次
+getUTCDay() 返回表示星期里的一个数字。  0(周日)-6(周六)  
+ch06\6.9.html  
+
+#### 6.2.8 以不同的格式来显示UTC时间
+getUTCHours()、getUTCMinutes()、getUTCSeconds()返回的值是一个两位的数字。不过返回值不总是两位的，如果该值小于10，则仅返回一位数字。   
+ch06\6.10.html  
+
+#### 6.2.9 设置日期对象中的年份、月份与日期值
+setFullYear(year,month,day)  4位  0~11  1~31    
+setMonth(month,day)  
+setDate(day)  
+ch06\6.11.html  
+
+#### 6.2.10 设置日期对象中的小时、分钟与秒钟值
+setHours(hour,min,sec,millisec)  
+setMinutes(min,sec,millisec)  
+setSeconds(sec,millisec)  
+ch06\6.12.html  
+
+#### 6.2.11 以UTC日期对Date对象进行设置
+setUTCDate(day)  
+ch06\6.13.html  
+
+#### 6.2.12 返回当地时间与UTC时间的差值
+使用getTimezoneOffset()方法可返回格林威治时间和本地时间之间的时差，以分钟为单位。  
+dateObject.getTimezoneOffset()  
+返回值为本地时间与GMT时间或UTC时间之间的时间差，以分钟为单位。  
+返回值不是以小时计，因某些国家所占用的时区甚至不到一个小时的间隔。  
+由于使用夏令时的惯例，该方法的返回值不是一个常量。  
+ch06\6.14.html  
+本地时间超前了 -8个小时。  
+
+#### 6.2.13 将Date对象中的日期转化为字符串格式
+toString()  
+ch06\6.15.html  
+
+#### 6.2.14 返回一个以UTC时间表示的日期字符串
+toUTCString()  
+ch06\6.16.html  
+
+#### 6.2.15 将日期对象转化为本地日期
+toLocaleString()  
+ch06\6.17.html  
+
+#### 6.2.16 日期间的运算
+1. 日期对象与整数年、月或日相加  
+date.setDate(date.getDate()+value);  //增加天  
+date.setMonth(date.getMonth()+value); //增加月  
+date.setFullYear(date.getFullYear()+value); //增加年
+2. 日期相减  
+两个日期对象相减，相减之后将会返回这两个日期之间的毫秒数。  
+ch06\6.18.html  
 
