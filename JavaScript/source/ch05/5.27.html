@@ -38,6 +38,19 @@ function MyMethod()
 var ZJDX=new Student("刘明明","新疆乌鲁木齐100号","401","88");
 Student.prototype.addAttributeOfSex="男";
 Student.prototype.addMethod=MyMethod();
+
+var ZJDX1=new Student("刘明明1","新疆乌鲁木齐100号1","4011","881");
+
+
+function Teacher(iName,iAddress,iGrade,iScore)
+{
+  this.name=iName;
+  this.address=iAddress;
+  this.grade=iGrade;
+  this.score=iScore;
+  this.information=showInformation;
+}
+var TEACH=new Teacher("刘明","100号","101","188");
 -->
 </script>
 </head>
@@ -46,6 +59,8 @@ Student.prototype.addMethod=MyMethod();
 <center>
 <form>
   <input type="button" value="查看" onclick="ZJDX.information()">
+  <input type="button" value="查看1" onclick="ZJDX1.information()">
+  <input type="button" value="查看2" onclick="TEACH.information()">
 </form>
 </center>
 </body>
