@@ -199,32 +199,32 @@ array.splice([start,count[,data1[data2,[,...[,datan]]]])
 没有指定data参数则指定的数据被删除，指定了则被替换。
 
 ### 5.4 详解常用的数组对象方法
-5.4.1 连接其它数组到当前数组
-arrayObject.concat(array1,array2,.....,arrayN)
-5.4.2 将数组元素连接为字符串
-arrayObject.join(separator)
-5.4.3 移除数组中最后一个元素
-arrayObject.pop()
-如果数组为空，pop不改变数组，并返回undefined值，否则返回移除的元素的值。
-5.4.4 将指定的数值添加到数组中
-arrayObject.push(newelement1,newelement2,....,newelementN)
-5.4.5 反序排列数组中的元素
-arrayObject.reverse()
-不会创建新数组，会改变原来的数组。
-5.4.6 删除数组中第一个元素
-arrayObject.shift()
-删除数组中第一个元素,并返回第一个元素的值。不会创建新数组，直接修改原来的数组。
-5.4.7 获取数组中的一部分数据
-arrayObject.slice(start,end)
-5.4.8 对数组中的元素进行排序
-arrayObject.sort(sortby)
-5.4.9 将数组转成字符串
-arrayObject.toString()
-元素之间用逗号分隔。
-5.4.10 将数组转换成本地字符串
-arrayObject.toLocaleString()
-5.4.11 在数组开头插入数据，并返回该数组
-arrayObject.unshift(newelement1,newelement2,....,newelementN)
+5.4.1 连接其它数组到当前数组  
+arrayObject.concat(array1,array2,.....,arrayN)  
+5.4.2 将数组元素连接为字符串  
+arrayObject.join(separator)  
+5.4.3 移除数组中最后一个元素  
+arrayObject.pop()  
+如果数组为空，pop不改变数组，并返回undefined值，否则返回移除的元素的值。  
+5.4.4 将指定的数值添加到数组中  
+arrayObject.push(newelement1,newelement2,....,newelementN)  
+5.4.5 反序排列数组中的元素  
+arrayObject.reverse()  
+不会创建新数组，会改变原来的数组。  
+5.4.6 删除数组中第一个元素  
+arrayObject.shift()  
+删除数组中第一个元素,并返回第一个元素的值。不会创建新数组，直接修改原来的数组。  
+5.4.7 获取数组中的一部分数据  
+arrayObject.slice(start,end)  
+5.4.8 对数组中的元素进行排序  
+arrayObject.sort(sortby)  
+5.4.9 将数组转成字符串  
+arrayObject.toString()  
+元素之间用逗号分隔。  
+5.4.10 将数组转换成本地字符串  
+arrayObject.toLocaleString()  
+5.4.11 在数组开头插入数据，并返回该数组  
+arrayObject.unshift(newelement1,newelement2,....,newelementN)  
 
 ### 5.5 创建和使用自定义对象
 Java作为基于对象的编程语言，其对象实例通过构造函数来创建。   
@@ -892,3 +892,264 @@ event根目录于window.event
 <a href="#" onclick="ProcessMethod(); return false;">
 ```
 2.11 attachEvent()和detachEvent():为制定DOM对象事件类型注册多个事件处理函数的方法，它们有两个参数，第一个是事件类型，第二个是事件处理函数。在attachEvent()事件执行的时候，this关键字指向的是window对象，而不是发生事件的那个元素。  
+
+## 第9章 处理窗口和文档对象
+访问浏览器提供的对象，如 window对象和document对象[window的子对象]。  
+### 9.1 窗口对象  
+window对象是客户端程序的全局(默认)对象，是客户端对象层次的根。  
+
+#### 9.1.1 窗口(window)简介
+document -> window.document();
+alert() -> window.alert();
+window对象的window属性和self属性引用的都是它自己。
+
+表9-1 window对象属性 
+ | 属性名称 | 说明 |
+| :----| :----- |
+| Closed | 一个布尔值，当窗口被关闭时此属性为true,默认为false |
+| defaultStatus,status | 一个字符串，用于设置在浏览器状态栏显示的文本 |
+| Document | window对象的数组，代表窗口的各个框架 |
+| Frames[] | 对document对象的引用，该对象表示在窗口中显示的HTML文件 |
+| history | 对history对象的引用，该对象代表用户浏览器窗口的历史 |
+| innerHight,innerWidth, <br> outerHeight,outerWidth | 它们分别表示窗口的内外尺寸 |
+| location | 对location对象的引用，该对象代表在窗口中显示的文档的URL |
+| Locationbar.menubar,<br>scrollbars,statusbar.toolbar | 对窗口中各种工具栏的引用，像地址栏、工具栏、菜单栏、滚动条等，这些对象分别用来设置测览器窗口中各个部分的可见性 |
+| name | 窗口的名称，可被HTML标记```<a>```的target属性使用 |
+| opener | 对打开当前窗口的wdow对象的引用。如果当前窗口被用户打开，则它的值为null |
+| pageXOfset,pageYOffset | 在窗口中滚动到右边和下边的数量 |
+| parent | 如果当前的窗口是框架，它就是对窗口中包含的这个框架的引用 |
+| self | 自引用属性，是对当前window对象的引用，与window属性相同 |
+| top | 如果当前窗口是一个框架，那么它就是对包含这个框架顶级窗口的window对象的引用.注意，对于嵌套在其他框架中的框架来说，top不等同于parent |
+| window | 自引用属性，是对当前window对象的引用，与self属性相同 |
+
+
+表9-2 window对象方法
+ | 方法名称 | 说明 |
+| :----| :----- |
+| close() | 关闭窗口 |
+| Find(),home().print().stop() | 执行浏览器查找、主页、打印和停止按钮的功能，就像用户单击了窗口中这些按钮一样 |
+| Focus(),blur() | 请求或放弃窗口的键盘焦点，Focus()方法还将把窗口置于最上层，使窗口可见 |
+| moveBy(),moveTo() | 移动窗口 |
+| resizeBy(),resizeTo() | 调整窗口大小 |
+| scrollBy(),scrollTo() | 滚动窗口中显示的文档 |
+| setInterval(),clearInterval() | 设置或者取消重复调用的函数，该函数在两次调用之间有指定的延迟 |
+| setTimeout(),clearTimeout() | 设置或者取消在指定的若干秒后调用一次的函数 |
+
+
+#### 9.1.2 window对象的属性
+一个Html文档至少有一个window对象，如果某个网页有多帧，则会有多个window对象。  
+1. defaultStatus  
+设置WEB浏览器状态栏信息  
+```
+window.defaultStatus="statusMsg"
+```
+ch09\9.2.html  
+2. document  
+获取当前显示的文档对象。  
+```
+var documentObj=window.document;
+```
+3. 框架属性集  
+框架把浏览器窗口分成几个独立的部分，每部分显示单独的页面且相互联系。如：左侧显示导航栏，右侧显示链接目标网页。  
+```
+<frame> 或 <iframe>
+var documentObj = window.frameElement;
+```
+ch09\9.3.html   
+4. history属性
+back()  forward()  go()  
+5. parent属性
+```
+var parentObj=window.parent;
+parentObj.frames[0].name;
+parentObj.frames["topFrame"].name;
+```
+ch09\9.4.html   
+6. top属性  
+获取最顶层窗口  
+var topObj = window.top;  
+
+
+#### 9.1.3 对话框
+
+表9-3 window对象对话框
+ | 对话框 | 说明 |
+| :----| :----- |
+| alert() | 弹出一个只包含“确定”按钮的对话框 |
+| confirm() | 弹出一个包含“确定“和“取消”按钮的对话框，要求用户做出选择。如果用户按下“确定”按钮，则返回true值，如果按下“取消”按组,则返回false值 |
+| prompt() | 弹出一个包含“确认”和“取消”按钮和一个文本框的对话框，要求用户在文本框输入一些数据。如果用户按下“确认”按钮，则返回文本框里已有的内容，如果用户按下“取消”按钮，则返回null值。如果指定<初始值>，则文本框里会有默认值 |
+
+1. alert  
+ch09\9.5.html  
+
+2. confirm  
+获取用户输入 true还是false  
+ch09\9.6.html  
+
+3. prompt  
+获取用户简单输入信息  
+```
+var str= window.prompt("strShow","strInput");
+```
+ch09\9.7.html  
+
+#### 9.1.4 窗口操作
+实现弹出窗口 window.open
+```
+open(<URL字符串>,<窗口名称字符串>,<参数字符串>);
+```
++ <UL字符串>：指定新窗口要打开网页的URL地址，如果为空(")，则不打开任何网页。
++ <窗口名称字符串>：指定被打开新窗口的名称（window.name),可以使用'_top'、'_blank'等内置名称。这里的名称跟```<a href="..." target="...">```里的target属性是一样的。
++ <参数字符串>：指定被打开新窗口的外观.如果只需要打开一个普通窗口，该字持串留空("),如果要指定新窗口，就在字符串里写上一到多个参数，参数之间用逗号隔开，其可选值如下。  
+> top=0: 窗口顶部离开屏幕顶部的像素数.  
+> left=0: 窗口左端离开屏幕左端的像素数。  
+> width=400: 窗口的宽度  
+> height=l00: 窗口的高度。  
+> menubar=yes|no: 窗口是否有菜单，取值yes或no.  
+> toolbar=yes|no:窗口是否有工具栏，取值yes或no.  
+> location=yes|no: 窗口是否有地址栏，取值yes或no  
+> directories=yes|no: 窗口是否有连接区，取值yes或no.  
+> scrollbars=...: 窗口是否有滚动条，取值yes或no.  
+> status=yes|no: 窗口是否有状态栏，取值yes或no.  
+> resizable=yes|no: 窗口是否可以调整大小，取值yes或no  
+1.open
+使用window对象的open方法可以实现打开一个新窗口的效果，open方法的使用方法为```var win=window.open("url","winName","param")```。其中win是打开新窗口的返回值，打开一个新窗口返回值指向新窗口的引用：url表示目标窗口的URL地址（包括路径和文件名），如果ul的值为空，则不打开任何窗口，winName表示目标窗口的名称，还可以是HTML的内建名称，如self、blank、top等HTML内建对象.param用于描述被打开窗口的各种显示效果，如果param的值为空，则系统将会打开一个普通的窗口。如果要指定打开窗口显示效果，就给parm赋值一到多个参数，多
+个参数之间用逗号隔开。  
+例如，打开一个宽500高200的窗口，使用语句：  
+```
+open('','_blank','width=500,height=200,menubar=no,toolbar-no,
+location=no,directories=no,status=no,scrobars=yes,resizable=yes')
+```
+ch09\9.8.html  
+2.close  
+用户可以在JavaScript中使用window对象的close方法关闭指定的已经打开的窗口。关闭窗口的使用方法为“winObj.close();”,其中，winObj代表需要关闭的window对象，可以是当前窗口的window对象，也可以是用户指定的任何window对象。关闭当前窗口还可以使用self.close()方法，使用close方法关闭窗口时，如果指定被关闭的窗口有状态条，浏览器会弹出警告信息。当浏览器弹出此提示信息后，其运行效果与打开确认对话框类似，所有页面的加载及JavaScript脚本的执行都暂停，直到用户作出反应。  
+在JavaScript中使用window.close()方法关闭当前窗口时，如果当前窗口是通过JavaScript打开的，则不会有提示信息。在某些测览器中，如果打开需要关闭窗口的浏览器只有当前窗口的历史访问记录，使用window.close()关闭窗口时，同样不会有提示信息。  
+3.blur  
+如果需要将当前窗口变为非活动窗口，可以使用window对象的blur()方法，本方法相当于将焦点从当前窗口移开，即让当前窗口失去焦点。blur()方法的使用方法为“wndow.blur();”。
+将焦点从指定窗口移开后，当前窗口仍然高亮显示，但是屏整上会显示打开当前窗口之前的另一个窗口。例如，使用window.open()方法打开一个新的窗口，但是要求不能显示新的窗口。当打开新窗口时，可以使用window.blur()方法，使用新窗口的blur()方法让新打开的窗口失去焦点，其实现方法如下：
+```
+var win=window.open(_url,_name,_feature); //得到打开的窗口对象
+win.blur(); //打开的窗口失去焦点
+```
+新窗口会在原来窗口的后面高亮显示，如果原窗口是最大化，则看不到新打开的窗口。  
+4.focus  
+window对象的focus()方法可以让指定的窗口获得焦点，变为活动窗口，本方法与blur方法执行相反的操作，会将焦点从当前窗口转向指定的窗口，其使用方法为“window.focus(),”  
+其中，focus()方法将焦点移动到指定窗口后，指定窗口会高亮显示。例如打开新的窗口后显示原来的窗口，使用focus()方法实现显示效果的方法如下：
+```
+var win-window.open(_url,_name,_feature)  //得到打开的窗口对象
+window.focus()  //原来的窗口获得焦点
+```
+### 9.2 文档(document)对象
+document属性除了常用的write()方法之外，还定义了文档整体信息属性，如文档URL、最后修改日期、文档要链接到URL、显示颜色等等。  
+#### 9.2.1 文档对象的属性
+window对象具有document属性，该属性表示在窗口中显示HTML文件的document对象。  
+表9-4 document对象属性
+ | 属性名称 | 说明 |
+| :----| :----- |
+| linkColor,<br>vlinkColor,alinkColor | 这些属性描述了超链接的颜色。linkColor指未访问过的链接的正常颜色，vlinkColor指访问过的链接的颜色，alinkColor指被激活的链接的颜色。这些属性对应于HTML文档中body标记的属性：link、vlink、alink |
+| anchors[] | Anchor对象的一个数组，该对象保存着代表文档中锚的集合 |
+| applets[] | Applet对象的-个数组，该对象代表文档中的Java小程序 |
+| bgColor,fgColor | 文档的背景色和前景色，这两个属性对应于HTML文档中body标记的bgcolor和text属性 |
+| cookie | 一个特殊属性，允许JavaScript脚本读写HTTP cookie |
+| domain | 该属性使处于同一域中的相互信任的Wb服务器在网页间交互时能协同忽略某项案例性限制 |
+| forms[] | Form对象的一个数组，该对象代表文档中fom标记的集合 |
+| images[] | Image对象一个数组，该对象代表文档中```<mg>```标记集合 |
+| lastModified | 一个字符串，包含文档的最后修改日期 |
+| links[] | Link对象的一个数组，该对象代表文档的链接```<a>```标记的集合 |
+| location | 等价于属性URL |
+| referrer | 文档的URL,包含把浏览器带到当前文档的链接 |
+| title | 当前文档的标题，即```<title>```和```</title>```之间的文本 |
+| URL | 一个字符串。声明装载文件的URL,除非发生了服务器重定向，否则该属性的值与window对象的Location.href相同 |
+
+1.颜色属性  
+```
+document.alinkColer="colorValue";
+blue或#0000FF
+
+colorStr = document.bgColor;
+var fgColorObj=document.fgColor;
+document.lonkColor="colorValue";
+var colorStr=document.vlinkColor;
+document.vlinkColor="colorStr";
+```
+ch09\9.9.html  
+
+2.anchor
+锚(mao)就是在文档中设置位置标记,并给该位置一个名称,以便引用.  
+```
+<a href="#hrefName" name="whatLink">锚点</a>
+<a href="#fileName#hrefName">锚点</a>
+
+var anchorAry=document.anchors;
+var aAry = document.getElementsByTagName("a");
+```
+ch09\9.10.html  
+
+3.form
+```
+var formObj=document.forms["formName"];
+var formObj=document.formName;
+```
+formObj代表获得文档的窗体对象.  
+ch09\9.11.html  
+
+#### 9.2.2 document对象的方法
+表9-5 document对象方法
+ | 方法名称 | 说明 |
+| :----| :----- |
+| close() | 关闭或结束open()方法打开的文档 |
+| open() | 产生一个新文档，并清除已有文档的内容 |
+| write() | 输入文本到当前打开的文档 |
+| writeln() | 输入文本到当前打开的文档,并添加一个换行符 |
+| clear() |  |
+| document.createElement(Tag) | 创建一个html标签对象 |
+| document.getElementById(ID) | 获得指定ID值的对象 |
+| document.getElementByName(ID) | 获得指定Name值的对象 |
+
+1. write和writeln  
+ch09\9.12.html
+2. clear
+清除文档所有内容的方法 ```docObj.clear()```
+不建议使用,正确方法先关闭再写入
+close() open() write()
+3. open
+```
+docObj.open([arg]);
+```
+arg: MIME类型，默认是text/html  
+4. close  
+当页面加载完毕后，调用此方法不会有效果，因为页面加载完毕后，document对象的close()方法自动执行，但当JavaScript调用document对象的write()方法动态生成页面时，如果没有使用close()方法关闭输出流，系统会一直等待。如果为窗口添加了onload时间，在没有调用close()方法的情况下，onload事件不会被触发。  
+
+#### 9.2.3 文档中的表单和图片
+一个HTML文档中的每一个<form>标记都会在document对象的Forms[]数组中创建一个元素，同理：  
+<img> --> images[]  
+<a>  --> Links[]  
+<applet> --> applets[]  
+也可以根据内容属性引用  
+```
+<form name="my">
+..
+</form>
+
+document.my.elements[0].value=this.value;
+```
+ch09\9.13.html  
+ch09\9.14.html  
+
+#### 9.2.4 文档中的超链接
+links属性，返回页面中所有链接标记组成的数组。在Web标准的strict模式下，链接标记的target属性是被禁止的，如果使用则无法通过W3C关于网页标准的验证。若要在符合strict标准的页面中能让链接在新建窗口中打开，使用如下代码：  
+```
+var links=document.links;
+for(var i=0; i<links.length; i++>){
+    links[i].target="_blank";
+}
+```
+ch09\9.15.html  
+
+```
+document.links == documet.all.tags("A");
+```
+
+## 第10章 层叠样式表
+
+### 10.1 CSS介绍
