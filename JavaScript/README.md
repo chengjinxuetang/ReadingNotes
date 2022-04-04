@@ -1482,3 +1482,35 @@ JavaScript  CSS  DOM   XMLHttpRequest对象
 ### 16.2 AJAX快速入门
 #### 16.2.1 全面剖析XMLHttpRequest对象
 https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest  
+
+
+
+
+
+# 专题
+## CSS
+### CSS定位
+#### 相对定位  relative 相对原位置进行的偏移，原位置的占位还是存在的
+position：relative  
+left: 64px;  
+top: 64px;
+
+#### 绝对定位 absolute
+不会占用原位置 ，并上浮
+写绝对定位时，父级元素需要是相对定位或者绝对定位。  如果不是这两种之一，则会选择它父级的父级。
+```
+position: absolute;  
+left: 180px;
+```
+```  是居中，但不是想要的视频居中
+position: absolute;  
+left: 50%;
+top: 50%;
+```
+
+```  是居中
+position: absolute;  
+left: 50%;
+top: 50%;
+transform: translate(-50%,-50%);
+```
