@@ -13,6 +13,19 @@ function toggle(targetid){
              }
      }
 }
+
+function toggleShow(targetid){
+     if (document.getElementById){
+         target=document.getElementById(targetid);
+            target.style.display="block";
+     }
+}
+function toggleHide(targetid){
+     if (document.getElementById){
+         target=document.getElementById(targetid);
+            target.style.display="none";
+     }
+}
 -->
 </script>
 <style type="text/css">
@@ -23,6 +36,8 @@ a {width:100px; display:block}
 
 <body>
 <a href="#" onclick="toggle('div1')">显示/隐藏</a>
+<a href="#" onclick="toggleShow('div1')">显示</a>
+<a href="#" onclick="toggleHide('div1')">隐藏</a>
 <div id="div1" class="div">
 <img src=11.jpg>
 <p>市场价：390元</p>

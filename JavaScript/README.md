@@ -1122,15 +1122,16 @@ arg: MIME类型，默认是text/html
 
 #### 9.2.3 文档中的表单和图片
 一个HTML文档中的每一个<form>标记都会在document对象的Forms[]数组中创建一个元素，同理：  
+```
 <img> --> images[]  
 <a>  --> Links[]  
 <applet> --> applets[]  
+```
 也可以根据内容属性引用  
 ```
 <form name="my">
 ..
 </form>
-
 document.my.elements[0].value=this.value;
 ```
 ch09\9.13.html  
@@ -1153,3 +1154,331 @@ document.links == documet.all.tags("A");
 ## 第10章 层叠样式表
 
 ### 10.1 CSS介绍
+CSS：Cascading.Style Sheets 层叠样式表  
+#### 10.1.1 CSS功能
+引入样式表的目的是将“网页结构代码”和“网页样式风格代码”分离开，从而使用网页设计者可以对网页布局进行更多地控制。
+#### 10.1.2 CSS发展历史
+万维网联盟(W3C),1996年制定并发布一个网页排版样式标准。  
+CSS1  CSS2  CSS3  
+CSS1(CSS Level1)是CSS的第一层次标准，它正式发布于1996年12月17日，1999年1月11日进行了修改。该标准提供简单的样式表机制，使的网页的编者通过附属的样式对HTML文档的表现进行描述。
+CSS2(CSS Level2)1998年5月12日被正式作为标准发布，CSS2基于CSS1,包含了CSS1的所有的特色和功能，并在多个领域进行完善，通过把表现样式文档和文档内容的进行分离。CSS2支持多媒体样式表，能够根据不同的输出设备给文档制定不同的表现形式。
+2001年5月23日，W3C完成了CSS3的工作草案，在该草案中制订了CSS3的发展路线图，详细列出了所有模块，并计划在未来逐步进行规范。在以后的时间内，W3C逐渐发布了不同模块。
+CSS1主要定义了网页的基本属性，如字体、颜色、空白边等。CSS2在此基础上添加了一些高级功能，如浮动和定位；以及一些高级的选择器，如子选择器、相邻选择器和通用选择器等。CSS3开始遵循模块化开发，这将有助于理清模块化规范之间的不同关系，减少完整文件的大小。以前的规范是一个完整的模块，太过庞大，而且比较复杂，所以，新的CSS3规范将其分为了多个模块。
+#### 10.1.3 浏览器与CSS
+各种浏览器对CSS3支持还处于发展阶段，也有自己的私有属性。
+
+### 10.2 编辑和浏览CSS
+#### 10.2.1 CSS基础语法
+每一条样式规则由三部分构成：选择符(selector)、属性(properties)和属性值(value),基本格式如下：  
+selector{property:value}  
++ selector选择符可以采用多种形式，可以为文档中的HTML标记，例如```<body>、<1able>、<p>```等，但是也可以是XML文档中的标记.
++ property属性则是选择特指定的标记所包含的属性.
++ vaue指定了属性的值。如果定义选择符的多个属性，则属性和属性值为一组，组与组之间用分号(;)隔开。基本格式如下：
+```
+selector{property1:valuel;property2:value2;......}
+```
+下面就给出一条样式规则，如下所示：
+```
+p{color:red}
+```
+该样式规则的选择符为p,段落标记为```<p>```提供样式，color为指定文字颜色属性，red为属性值。此样式表示标记```<p>```指定的段落文字为红色。
+如果要为段落设置多种样式，则可以使用下列语句：
+```
+p{font-family:"隶书";color::red;font-size:40px;font--weight:bold}
+```
+
+#### 10.2.2 手工编写CSS
+使用记事本  
+#### 10.2.3 使用Dreamweaver编写CSS
+ch10\10.2.html  
+
+### 10.3 在HTML中使用CSS的方法
+#### 10.3.1 行内样式
+直接把CSS代码添加到HTML的标记中，作为HTML标记的属性标记存在，可以简单地对某个元素单独定义样式。  
+使用style属性。  
+```
+<p style="cllor:red">段落样式</p>
+```
+不利于样式的重用，不能完全发挥样式表“内容结构和样式控制代码”分离的优势。  
+ch10\10.3.html  
+
+#### 10.3.2 内嵌样式
+把样式代码添加到<head>与</head>之间，并且用<style>和</style>标记进行声明。  
+```
+<head>
+<style type="text/css">
+<!--
+ p
+ {
+     color:red;
+     font-size:12px;
+ }
+-->
+</sytle>
+</head>
+```
+上面的注释<!-- ..
+是为了兼容较低版本的浏览器不能识别sytle标记,如果支持，被注释的CSS样式定义代码依旧能发挥作用。  
+ch10\10.4.html  
+
+#### 10.3.3 链接样式
+很好地将“页面内容”和“样式风格代码”分离成两个文件或多个文件，实现了页面框架HTML代码和CSS代码的完成分离。同一CSS文件可以嵌入所有的HTML页面中，使整体风格统一、协调，减少维护工作量。  
+链接样式是指在外部定义CSS样式并形成以.css为扩展的文件，然后在页面中通过link链接标记链接到页面中，且该链接语句必须放在页面的head标记区，如下：
+```
+<link rel="stylesheet" type="text/css" href="1.css"/>
+```
++ rel 指定链接到样式表，其值为stylesheet。
++ type 表示样式表类型为CSS样式表
++ href 指定了CSS样式表所在位置，此处表示当前路径下名为1.css文件。
+ch10\10.5.html  
+
+#### 10.3.4 导入样式
+导入样式的样式表，在HTML文件初始化时，会被导入到HTML文件中，作为文件的一部分，类似于内嵌效果。而链接样式是在HTML标记需要样式风格时才以链接方式引入。  
+导入外部样式表是在内部样式表的style标记中，使用@import导入一个外部样式表：  
+```
+<head>
+<style type="text/css">
+<!--
+@import "1.css"
+--> </style>
+</head>
+```
+导入外部样式表必须在样式表的开始部分，其他内部样式表上部。  
+可以一次导入多个CSS文件。  
+ch10\106.html   
+
+#### 10.3.5 优化级问题
+行内样式 > 内嵌样式 > 链接样式 > 导入样式
+
+### 10.4 CSS选择器
+选择器(selector)也称为选择符。它不只是HTML文档中的元素标记，也可以是类、ID或元素的某种状态(如 a:link)。根据用途可以分为标签选择器、类选择器、全局选择器、ID选择器和伪类选择器等。  
+#### 10.4.1 标签选择器
+```
+tagName{property:value}
+```
+有些浏览器不能恰当的将body的样式属性带入表格和其它元素里，因此为了完整性，可以有如下写法:  
+```
+body,p,td,th,div,blockquote,dl,ul.ol{
+    font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;
+    font-size:1em;
+    color:#000000;
+}
+```
+ch10\10.10.html  
+
+#### 10.4.2 类选择器
+如对某类标记中其中某个标记重新设定样式，或不同标记中使用相同的样式，可以使用类(class)选择器。  
+```
+.classValue{property:value}
+```
+其中classValue为标记的class属性的属性值。
+```
+.rd{color:red}
+<p class="rd">段落样式</p>
+<h3 class="rd">标题样式</h3>
+```
+ch10\10.11.html  
+
+#### 10.4.3 ID选择器
+与类选择器类似，都是针对特定属性的属性值进行匹配。
+```
+#idValue{property:value}
+```
++ 类选择器可以给任意数量的标记定义样式，但ID只能使用一次(虽然CSS可用出现重复，但JS中的调用不允许这样写)。
++ ID选择器比类选择器具有更高的优先级，即当两者冲突时，优先使用ID选择器。  
+ch10\10.12.html  
+
+#### 10.4.4 全局选择器
+所有HTML元素都起作用。
+```
+*{property:value}
+```
+示例：
+```
+*{margin:0; padding:0;}
+```
+ch10\13.html  
+
+#### 10.4.5 组合选择器
+也叫复合选择器，即将多个选择器进行搭配，此样式使用到指定选择器都出现的位置，即相减内容被指定的选择器同时修饰。  
+```
+h1 .red{color:red}
+<h1 class="red">标题</h1>
+<h1 >标题2</h1>
+```
+标题 同时被h1和.red修饰，样式生效，而 标题2 则不生效。
+
+#### 10.4.6 继承选择器
+子标志在没有定义的情况下所有样式是继承父标记的，当子标记重复定义了父标记的声明时，子标记执行后面的声明；与父标记不冲突的地方仍然没用父标记的声明。  
+ch10\10.15.html  
+
+#### 10.4.7 伪类
+不是作用在标志上，而是作用在标记的状态上。很多浏览器支持不同的伪类，没有统一的标准，但都支持超链接的下面四种状态的伪类：  
+```
+a:link{color:red}  //未访问的链接
+a:visited{color:green}  //已访问的链接
+a:hover{color:blue}  //鼠标移动到链接上
+a:active{color:orange}  //选定的链接
+```
+
+#### 10.4.8 属性选择器
+属性选择器是根据某个属性是否存在或属性值来寻找元素的。CSS3中共有7个属性选择器。  
+表10-1CSS3中常见属性选择器
+ | 属性进择器格式 | 说明 |
+| :----| :----- |
+| E[foo] | 选择匹配E的元素，且该元素定义了foo属性。注意，E选择器可以省略，表示选择定义了foo属性的任意类型元素 |
+| E[foo="bar"] | 选择匹配E的元素，且该元素将foo属性值定义为了“bar”。注意，E选择器可以省略，用法与上一个速择器类似 |
+| E[foo~="bar"] | 选择匹配E的元素，且该元素定义了foo属性, foo属性值是一个以空格符分隔的列表，其中一个列表的值为“bar”。注意，E选择符可以省略，表示可以匹配任意类型的元素 例如，```a[title~="b1"]```匹配```<a title="b1 b2 b3”><a>```,而不匹配```<a title="b2 b3 b5"></a>```|
+| ```E[foo|="en"]``` | 选择匹配E的元素，且该元素定义了foo属性, foo属性值是一个用连字符(~)分隔的的列表，值开头的字符为en。 注意，E选择符可以省略，表示可以匹配任意类型的元素  例如，```[lang|="en"]```匹配```<body lang="en-us"></body>```,而不是匹配```<body lang="f-ag"></body>```|
+| ```E[foo^="bar"]``` | 选择匹配E的元素，且该元素定义了foo属性，foo属性值包含了前缀为bar的子字符串。注意，E选择符可以省略，表示可以匹配任意类型的元素。例如，```body[lang^="en"]```匹配```<body lang="en-us"></body>```,而不匹配```<body lang="f-ag"></body>```|
+| ```E[foo$="bar"]``` | 选择匹配E的元素，且该元素定义了foo属性，foo属性值包含后缀为bar的子字符串。注意E选择符可以省略，表示可以匹配任意类型的元素，例如，```img[src$="jpg"]```匹配```<img src="p.jpg"/>```,而不匹配```<img src="p.gif"/>```|
+| ```E[foo*="bar"]``` | 选择匹配E的元素，且该元素定义了foo属性，foo属性值包含bar的子字符串。|
+| | |
+ch10\10.17.html  
+#### 10.4.9 结构伪类选择器
+结构伪类(Structural pseudo-classes)是CSS3新增的类型选择器。利用文档结构树（DOM）实现元素过滤。  
+表10-2新增结构伪类选择器  
+
+ | 选择器 | 含义 |
+| :----| :----- |
+| E:root | 匹配文档的根元素，对于HML文档，就是HML元素 |
+| E:nth-child(n) | 匹配其父元素的第n个子元素，第一个编号为1 |
+| E:nth-last-child(n) | 匹配其父元素的倒数第n个子元素，第一个编号为1 |
+| E:nth-of-type(n) | 与:nth-child()作用类似，但是仅匹配使用同种标签的元素 |
+| E:nth-last-of-type(n) | 与:nth-last-child()作用类似，但是仅匹配使用同种标签的元素 |
+| E:last-child | 匹配父元素的最后一个子元素，等同于nth-last-child(1) |
+| E:first-of-type | 匹配父元素下使用同种标签的第一个子元素，等同于:nth-of-type(1) |
+| E:last-of-type | 匹配父元素下使用同种标签的最后一个子元素，等同于:nth-last-oftype(1) |
+| E:only-child | 匹配父元素下仅有的一个子元素，等同于:first-child:last-child或:nth-child(1):nth-last-child(1) |
+| E:only-of-type | 匹配父元素下使用同种标签的唯一一个子元素，等同于:first-of-type:last-of-type或:nth-of-type(1) |
+| E:empty | 匹配一个不包含任何子元素的元素，注意，文本节点也被看作子元素 |
+| | |
+ch10\10.18.html 
+
+表10-3 UI元素状态伪类选择器
+ | 选择器 | 说明 |
+| :----| :----- |
+| E:enabled | 选择匹配E的所有可用UI元素，注意，在网页中，U川元素一般是指包含在form元素内的表单元素，例如```input:enabled``匹配```<fom><input type=text/><input type=buttion disabled=disabled/></fom>```代码中的文本框，而不匹配代码中的按钮 |
+| E:disabled | 选择匹配E的所有不可用元素，注意，在网页中，UI元素一般是指包含在form元素内的表单元素，例如```input:disabled```匹配```<form><input type=text/><input type=buttion disabled=disabled/></form>```代码中的按钮，而不匹配代码中的文本框 |
+| E:checked | 选择匹配E的所有可用UI元素。注意在网页中，UI元素一般是指包含在from元素内的表单元素，例如```input::checked```配```<form><input type=checkbox/><input type=radio checked=checked></form>```代码中的单选按钮，但不匹配该代码中的复选框 |
+
+### 10.5 选择器声明
+#### 10.5.1 集体声明
+逗号分隔
+```
+h1,h2,p{
+    color:red;
+}
+```
+#### 10.5.2 多重嵌套声明
+空格分隔
+```
+p a{color:red;}
+```
+## 11 表单和表单元素
+### 11.1 表单概述
+### 11.2 表单基本元素的使用
+#### 11.2.1 单行文本输入框(text)
+#### 11.2.2 多行文本输入框(textarea)
+#### 11.2.3 密码域(password)
+#### 11.2.4 单选按钮(radio)
+#### 11.2.5 复选框(checkbox)
+#### 11.2.6 下拉选择框(select)
+#### 11.2.7 普通按钮(button)
+#### 11.2.8 提交按钮(submit)
+#### 11.2.9 重置按钮(reset)
+### 11.3 表单高级元素的使用
+#### 11.3.1 url属性
+#### 11.3.2 email属性
+#### 11.3.3 date和time属性
+#### 11.3.4 number属性
+ch11\11.14.html  
+#### 11.3.5 range属性
+#### 11.3.6 required属性
+### 11.4 表单(Form)对象在JavaScript中的应用
+#### 11.4.1 HTML表单基础
+#### 11.4.2 编辑表单元素的脚本
+#### 11.4.3 用JavaScript获取网页内容实现数据验证
+
+
+## 12 JavaScript控制样式表
+### 12.1 DHTML简介
+DHTML，动态HTML
+
+### 12.2 前台动态网页效果
+#### 12.1.1 动态内容
+```
+var temp="<br><style>#abc{color:red;}</style>"+html.innerHTML;
+html1.innerHTML=temp;
+```
+#### 12.1.2 动态样式
+styleSheets属性，当前HTML网页上的样式属性集合，可以数组形式获取；属性rules表示第几个选择器；属性cssRules表示是第几条规则。
+ch12\12.2.css  
+
+#### 12.1.3 动态定位
+```
+d.style.pixelLeft = x; 
+d.style.pixelTop = y; 
+```
+#### 12.1.4 显示与隐藏
+display设置元素以块显示(block) 还是不显示(none)。  
+ch12\12.4.html  
+
+## 13 CSS和JavaScript搭配的应用案例
+
+## 14 程序调试和错误处理
+### 14.1 常见的错误和异常
+### 14.2 处理异常的方法
+#### 14.2.1 用onerror事件处理异常
+```
+window.onerror=function(sMessages,sUrl,sLine){
+    alert(sMessages);
+}
+```
+#### 14.2.2 用try...catch...finally语句处理异常
+ch14\14.3.html  
+#### 14.2.3使用throw语句抛出异常
+ch14\14.4.html  
+### 14.3 使用调试器
+### 14.4 JavaScript语言调试技巧
+#### 14.4.1 用alert()语句
+#### 14.4.1 用wirte()语句
+```
+document.write("test");
+```
+
+## 15 JavaScript中的XML编程
+XML用来描述、存储数据，是一种元标记语言，所谓“元标记语言”就是开发者是可以根据需要定义息的标记。   
+### 15.1 XML的语法基础
+```
+<?xml version="1.0" encoding="编码0" stdalone="yes/no">
+```
+version必选
+encoding：常用UTF-8和GB2312 ,默认是UTF-8,如果encoding设置为GB2312,则文档必须使用ANSI编码保存。
+### 15.2 CSS修饰XML文件
+```
+<?xml-stylesheet href="URI" type="text/css">
+```
+ch15\15.4.xml  
+### 15.3 XML编程基础
+#### 15.3.1 XPath简介
+
+#### 15.3.2 XSLT简介
+
+
+### 15.4 浏览器中的XML DOM
+#### 15.4.1 IE中的XML DOM
+基于ActiveX的MSXML库
+### 15.5 浏览器中的XPATH
+### 15.6 浏览器中的XSLT
+
+
+## 16 AJAX技术
+### 16.1 AJAX概述
+#### 16.1.1 什么是AJAX
+AJAX:Asynchronous JavaScript And XML，是一种Web应用程序客户机技术，它结合了JavaScript、CSS、HTML、XMLHttpRequest对象和DOM等多种技术。运行在浏览器上的AJAX应用程序，以一种异步的方式与Web服务器通讯，并且只更新页面的一部分。  
+#### 16.1.2 AJAX的关键元素
+JavaScript  CSS  DOM   XMLHttpRequest对象  
+### 16.2 AJAX快速入门
+#### 16.2.1 全面剖析XMLHttpRequest对象
+https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest  
