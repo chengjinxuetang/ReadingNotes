@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>浮动后的影响--清空浮动</title>
+    <style type="text/css">
+     body,div,ul,li,img{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        padding: 100px;
+    }
+    div{
+        width: 100px;
+        height: 100px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    #one{background:red; float: left;}
+    #two{background:green; width:200px; height:200px; float: left;}
+    #three{background:blue; width:300px; height:300px; clear:both}
+    </style>
+</head>
+<body>
+    <div id="one">1</div>
+    <div id="two">2</div>
+    <div id="three">3</div>
+</body>
+</html>
